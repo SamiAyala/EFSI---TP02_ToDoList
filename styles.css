@@ -1,9 +1,14 @@
-body{
-    background-color: thistle;
-    font-size: large;
-    font-family:monospace;
-    margin: auto;
-  width: 50%;
-  border: 3px solid beige;
-  padding: 10px;
+body {
+  background-image: url("https://previews.123rf.com/images/leungchopan/leungchopan1506/leungchopan150600626/41731819-cork-board-background.jpg");
+}
+
+#divToDo{
+  background-image: url("/nota.png");
+  margin-left: 25%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  font-weight: bold;
+  font-size: larger;
+  border: 3px solid goldenrod;
 }

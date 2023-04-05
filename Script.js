@@ -3,7 +3,7 @@ let ArrayToDos = [
     id: makeid(10),
     titulo: 'toDo 1',
     descripcion: 'Hacer algo 1',
-    fechaCreacion: (new Date()).toLocaleDateString('es'),
+    fechaCreacion: new Date(),
     timestamp: parseInt((new Date()).getTime(),16),
     hecho: false,
     fechaHecho: null,
@@ -13,7 +13,7 @@ let ArrayToDos = [
     id: makeid(10),
     titulo: 'toDo 2',
     descripcion: 'Hacer algo 2',
-    fechaCreacion: (new Date()).toLocaleDateString('es'),
+    fechaCreacion: new Date(),
     timestamp: parseInt((new Date()).getTime(),16),
     hecho: false,
     fechaHecho: null,
@@ -31,7 +31,7 @@ botonAgregar.onclick = () => {
       id: makeid(10),
       titulo: inputTitulo.value,
       descripcion: inputDescripcion.value,
-      fechaCreacion: (new Date()).toLocaleDateString('es'),
+      fechaCreacion: new Date(),
       timestamp: parseInt((new Date()).getTime(),16),
       hecho: false,
       fechaHecho: null,
@@ -46,18 +46,19 @@ function mostrarLista() {
   let listaToDo = document.getElementById('listaToDo')
   listaToDo.innerHTML = ''
   listaToDo.innerHTML = ArrayToDos.map(
-    toDo => `<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapseExample" id="buttonToDo">
-    ${toDo.titulo}
+    toDo => `<div id="divToDo" class="w-50"><p> ${toDo.hecho ? '<s>' : ''}${toDo.titulo}</s></p><br><button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapseExample" id="buttonToDo">
+    Ver Más
   </button>
 </p>
 <div class="collapse" id="collapse">
   <div class="card card-body">
-      <p class="pToDo" id="pToDo">Descripcion: ${toDo.descripcion} <br>Fecha de creacion: ${toDo.fechaCreacion}<br>timestamp: ${toDo.timestamp}
+      <p class="pToDo" id="pToDo">Descripcion: ${toDo.descripcion} <br>Fecha de creacion: ${toDo.fechaCreacion.toLocaleDateString('es')}<br>timestamp: ${toDo.timestamp}
     <div class="form-check">
     <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="toggleHecho('${toDo.id}')" ${toDo.hecho ? 'checked' : ''}>
-    </div> ${toDo.hecho ? "Fecha en la que se hizo: " + toDo.fechaHecho : ''} </p>
+    </div> ${toDo.hecho ? "Fecha en la que se hizo: " + toDo.fechaHecho.toLocaleDateString('es') : ''} </p>
   </div>
-</div><br>`
+</div><br></div>
+`
   ).join('')
 }
 mostrarLista()
@@ -65,7 +66,7 @@ mostrarLista()
 function toggleHecho(id) {
   let unElemento = ArrayToDos.find(unTodo => unTodo.id === id);
   unElemento.hecho ? unElemento.hecho = false : unElemento.hecho = true;
-  unElemento.fechaHecho = (new Date()).toLocaleDateString('es');
+  unElemento.fechaHecho = new Date();
   unElemento.timestampHecho = parseInt((new Date()).getTime());
   mostrarLista();
 }
@@ -83,15 +84,16 @@ function makeid(length) {
 }
 
 botonMasRapido.onclick = () => {
-  //let ArrayVelocidades = []
-  /*ArrayToDos.map(
-    toDo => {
-      if (toDo.hecho) {
+  /*const tachados = ArrayToDos.filter(toDo => toDo.tachados)
+  let masRapido = tachados[0];
+  let elTiempoMasRapido = masRapido.fechaHecho - masRapido.fechaCreacion;
 
-      }
-      let velocidad = (toDo.timestamp - toDo.timestampHecho)
-      ArrayVelocidades.push(velocidad)
-    })
-  let maxVelocidad = Math.max(Math, ArrayVelocidades)*/
-  console.log(ArrayToDos.sort((a, b) => ( a.timestampHecho - a.timestamp) - ( b.timestampHecho - b.timestamp)))
+  tachados.forEach(toDo => {
+    if ((toDo.fechaHecho - toDo.fechaCreacion) < elTiempoMasRapido) {
+      elTiempoMasRapido = todo.fechaHecho - toDo.fechaCreacion;
+      masRapido = toDo;
+    }
+  });*/
+  let masRapido = ArrayToDos.sort((a, b) => ( a.timestampHecho - a.timestamp) - ( b.timestampHecho - b.timestamp))
+  alert("La tarea realizada más rapida fue "+ masRapido[0].titulo)
 }
