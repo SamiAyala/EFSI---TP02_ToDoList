@@ -2,13 +2,18 @@ body {
   background-image: url("https://previews.123rf.com/images/leungchopan/leungchopan1506/leungchopan150600626/41731819-cork-board-background.jpg");
 }
 
-#divToDo{
-  background-image: url("/nota.png");
+#divToDo {
+  background-color: khaki;
   margin-left: 25%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; 
+  background-size: cover;
   font-weight: bold;
   font-size: larger;
   border: 3px solid goldenrod;
+}
+
+.h1Titulo {
+  color: white;
+  padding-top: 1%;
 }

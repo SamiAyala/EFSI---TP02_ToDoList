@@ -4,7 +4,7 @@ let ArrayToDos = [
     titulo: 'toDo 1',
     descripcion: 'Hacer algo 1',
     fechaCreacion: new Date(),
-    timestamp: parseInt((new Date()).getTime(),16),
+    timestamp: parseInt((new Date()).getTime(), 16),
     hecho: false,
     fechaHecho: null,
     timestampHecho: null
@@ -14,7 +14,7 @@ let ArrayToDos = [
     titulo: 'toDo 2',
     descripcion: 'Hacer algo 2',
     fechaCreacion: new Date(),
-    timestamp: parseInt((new Date()).getTime(),16),
+    timestamp: parseInt((new Date()).getTime(), 16),
     hecho: false,
     fechaHecho: null,
     timestampHecho: null
@@ -32,7 +32,7 @@ botonAgregar.onclick = () => {
       titulo: inputTitulo.value,
       descripcion: inputDescripcion.value,
       fechaCreacion: new Date(),
-      timestamp: parseInt((new Date()).getTime(),16),
+      timestamp: parseInt((new Date()).getTime(), 16),
       hecho: false,
       fechaHecho: null,
       timestampHecho: null
@@ -46,11 +46,11 @@ function mostrarLista() {
   let listaToDo = document.getElementById('listaToDo')
   listaToDo.innerHTML = ''
   listaToDo.innerHTML = ArrayToDos.map(
-    toDo => `<div id="divToDo" class="w-50"><p> ${toDo.hecho ? '<s>' : ''}${toDo.titulo}</s></p><br><button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapseExample" id="buttonToDo">
+    toDo => `<div id="divToDo" class="w-50 p-4"><p class="position-absolute start-50 translate-middle"> ${toDo.hecho ? '<s>' : ''}${toDo.titulo}</s></p><br><button class="btn btn-primary position-absolute start-50 translate-middle" type="button" data-bs-toggle="collapse" data-bs-target="#${toDo.id}" aria-expanded="false" aria-controls="collapseExample" id="buttonToDo">
     Ver Más
   </button>
 </p>
-<div class="collapse" id="collapse">
+<div class="collapse" id="${toDo.id}">
   <div class="card card-body">
       <p class="pToDo" id="pToDo">Descripcion: ${toDo.descripcion} <br>Fecha de creacion: ${toDo.fechaCreacion.toLocaleDateString('es')}<br>timestamp: ${toDo.timestamp}
     <div class="form-check">
@@ -59,7 +59,7 @@ function mostrarLista() {
   </div>
 </div><br></div>
 `
-  ).join('')
+  ).join('-')
 }
 mostrarLista()
 
@@ -84,16 +84,15 @@ function makeid(length) {
 }
 
 botonMasRapido.onclick = () => {
-  /*const tachados = ArrayToDos.filter(toDo => toDo.tachados)
-  let masRapido = tachados[0];
-  let elTiempoMasRapido = masRapido.fechaHecho - masRapido.fechaCreacion;
+  const tachados = ArrayToDos.filter(toDo => toDo.hecho);
+  let elMasRapido = tachados[0];
+  let elTiempoMasRapido = elMasRapido.fechaHecho - elMasRapido.fechaCreacion;
 
   tachados.forEach(toDo => {
     if ((toDo.fechaHecho - toDo.fechaCreacion) < elTiempoMasRapido) {
-      elTiempoMasRapido = todo.fechaHecho - toDo.fechaCreacion;
-      masRapido = toDo;
+      elTiempoMasRapido = toDo.fechaHecho - toDo.fechaCreacion;
+      elMasRapido = toDo;
     }
-  });*/
-  let masRapido = ArrayToDos.sort((a, b) => ( a.timestampHecho - a.timestamp) - ( b.timestampHecho - b.timestamp))
-  alert("La tarea realizada más rapida fue "+ masRapido[0].titulo)
+  });
+  alert("El mas rapido fue: " + elMasRapido.titulo);
 }
