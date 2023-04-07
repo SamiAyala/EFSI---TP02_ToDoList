@@ -46,7 +46,7 @@ function mostrarLista() {
   let listaToDo = document.getElementById('listaToDo')
   listaToDo.innerHTML = ''
   listaToDo.innerHTML = ArrayToDos.map(
-    toDo => `<div id="divToDo" class="w-50 p-4"><p class="position-absolute start-50 translate-middle"> ${toDo.hecho ? '<s>' : ''}${toDo.titulo}</s></p><br><button class="btn btn-primary position-absolute start-50 translate-middle" type="button" data-bs-toggle="collapse" data-bs-target="#${toDo.id}" id="buttonToDo" style="margin-top: 1%;">
+    toDo => `<div id="divToDo" class="w-50 p-4"><p class="position-absolute start-50 translate-middle" style="font-size:150%;"> ${toDo.hecho ? '<s>' : ''}${toDo.titulo}</s></p><br><button class="btn btn-primary position-absolute start-50 translate-middle" type="button" data-bs-toggle="collapse" data-bs-target="#${toDo.id}" id="buttonToDo" style="margin-top: 1%;">
     Ver Más
   </button>
 </p>
