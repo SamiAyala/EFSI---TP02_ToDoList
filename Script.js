@@ -46,16 +46,16 @@ function mostrarLista() {
   let listaToDo = document.getElementById('listaToDo')
   listaToDo.innerHTML = ''
   listaToDo.innerHTML = ArrayToDos.map(
-    toDo => `<div id="divToDo" class="w-50 p-4"><p class="position-absolute start-50 translate-middle"> ${toDo.hecho ? '<s>' : ''}${toDo.titulo}</s></p><br><button class="btn btn-primary position-absolute start-50 translate-middle" type="button" data-bs-toggle="collapse" data-bs-target="#${toDo.id}" aria-expanded="false" aria-controls="collapseExample" id="buttonToDo">
+    toDo => `<div id="divToDo" class="w-50 p-4"><p class="position-absolute start-50 translate-middle"> ${toDo.hecho ? '<s>' : ''}${toDo.titulo}</s></p><br><button class="btn btn-primary position-absolute start-50 translate-middle" type="button" data-bs-toggle="collapse" data-bs-target="#${toDo.id}" id="buttonToDo" style="margin-top: 1%;">
     Ver Más
   </button>
 </p>
-<div class="collapse" id="${toDo.id}">
-  <div class="card card-body">
+<div class="collapse"  id="${toDo.id}">
+  <div class="card card-body" style="margin-top:5%;>
       <p class="pToDo" id="pToDo">Descripcion: ${toDo.descripcion} <br>Fecha de creacion: ${toDo.fechaCreacion.toLocaleDateString('es')}<br>timestamp: ${toDo.timestamp}
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="toggleHecho('${toDo.id}')" ${toDo.hecho ? 'checked' : ''}>
-    </div> ${toDo.hecho ? "Fecha en la que se hizo: " + toDo.fechaHecho.toLocaleDateString('es') : ''} </p>
+    <label><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" onclick="toggleHecho('${toDo.id}')" ${toDo.hecho ? 'checked' : ''}>Hecho</label>
+    </div> ${toDo.hecho ? "Fecha en la que se hizo: " + toDo.fechaHecho.toLocaleDateString('es') + " a las " + toDo.fechaHecho.toLocaleTimeString('es') : ''} </p>
   </div>
 </div><br></div>
 `
@@ -96,3 +96,4 @@ botonMasRapido.onclick = () => {
   });
   alert("El mas rapido fue: " + elMasRapido.titulo);
 }
+
